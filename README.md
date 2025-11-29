@@ -48,3 +48,4 @@ Users can enter programs, execute instructions, and watch the clock cycles visua
 This project is inspired by **Ben Eater’s educational videos** on the SAP-1 computer.  
 It aims to let learners explore how a simple computer works **without physical hardware** — directly in the browser, in a visual and intuitive way.
 
+.
