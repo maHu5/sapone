@@ -1,0 +1,63 @@
+.seven-segment {
+    position: relative;
+    display: inline-block;
+    width: calc(var(--segment-size) * 0.6);
+    height: var(--segment-size);
+    margin: 4px;
+}
+
+/* Segmente */
+.segment {
+    position: absolute;
+    background-color: rgba(255, 0, 0, 0.2);
+    border-radius: 2px;
+}
+
+.segment.on {
+    background-color: var(--segment-color, red);
+}
+
+/* horizontale Segmente */
+.segment.a,
+.segment.g,
+.segment.d {
+    width: 60%;
+    height: 12%;
+    left: 20%;
+}
+
+/* vertikale Segmente */
+.segment.b,
+.segment.c,
+.segment.e,
+.segment.f {
+    width: 16%;
+    height: 40%;
+}
+
+/* Positionierung */
+.segment.a {
+    top: 0;
+}
+.segment.b {
+    top: 6%;
+    right: 0;
+}
+.segment.c {
+    bottom: 6%;
+    right: 0;
+}
+.segment.d {
+    bottom: 0;
+}
+.segment.e {
+    bottom: 6%;
+    left: 0;
+}
+.segment.f {
+    top: 6%;
+    left: 0;
+}
+.segment.g {
+    top: 44%;
+}

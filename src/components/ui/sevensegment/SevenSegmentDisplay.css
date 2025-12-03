@@ -1,0 +1,5 @@
+.seven-segment-display {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing);
+}

@@ -1,0 +1,25 @@
+.led {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin: 1px;
+    border-radius: 50%;
+    border: 2px solid var(--led-color, green);
+    background-color: var(--led-bg);
+}
+
+/* ON state */
+.led.on {
+    background-color: var(--led-color, green);
+}
+
+/* Clickable LED */
+.led.clickable {
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Hover effect for clickable LEDs */
+.led.clickable:hover {
+    filter: brightness(1.2);
+}

@@ -1,0 +1,19 @@
+.signal {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #999;
+    padding: 6px 3px;
+    cursor: pointer;
+}
+
+.signal:not(:last-child) {
+    border-right: none;
+}
+
+.signal > div {
+    text-align: center;
+    white-space: nowrap;
+    line-height: 15px;
+    user-select: none;
+    font-size: 14px;
+}

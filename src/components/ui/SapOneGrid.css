@@ -1,0 +1,43 @@
+.sap-one-grid {
+    width: fit-content;
+    background-color: #ddd;
+    display: grid;
+    border: 1px solid #666;
+    grid-template-columns: repeat(3, 280px);
+    grid-template-rows: auto auto;
+    position: relative;
+}
+
+.sap-one-grid > div {
+    padding: 0em 1em 0.5em 1em;
+}
+
+.sap-one-grid > div:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.sap-one-grid > div:nth-child(2) {
+    border-left: 1px solid #666;
+    border-right: 1px solid #666;
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.sap-one-grid > div:nth-child(3) {
+    grid-column: 3;
+    grid-row: 1;
+}
+
+.sap-one-grid > div:nth-child(4) {
+    border-top: 1px solid #666;
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.sap-one-grid > div:nth-child(5) {
+    border-left: 1px solid #666;
+    border-top: 1px solid #666;
+    grid-column: 2 / span 3;
+    grid-row: 2;
+}
