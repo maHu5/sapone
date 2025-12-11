@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useReducer, useRef } from 'react'
 import { alu, boolArrayToInt, intToBoolArray } from './helper'
 
-const MAX_TSTATE = 5 // z. B. T0–T8 wie beim SAP-1
+const MAX_TSTATE = 4 // z. B. T0–T8 wie beim SAP-1
 
 const initialState = {
     BUS: { pins: Array(8).fill(false) },

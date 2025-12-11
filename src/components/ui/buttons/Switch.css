@@ -1,0 +1,28 @@
+.ios-switch {
+    width: 36px;
+    height: 16px;
+    border-radius: 16px;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: background-color 0.25s ease;
+}
+
+.ios-switch.off {
+    background-color: #555;
+    justify-content: flex-start;
+}
+
+.ios-switch.on {
+    background-color: #237e06;
+    justify-content: flex-end;
+}
+
+.switch-icon {
+    color: white;
+    background: white;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+}

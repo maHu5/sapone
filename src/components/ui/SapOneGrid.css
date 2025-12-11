@@ -3,7 +3,7 @@
     background-color: #ddd;
     display: grid;
     border: 1px solid #666;
-    grid-template-columns: repeat(3, 280px);
+    grid-template-columns: 260px 290px 260px;
     grid-template-rows: auto auto;
     position: relative;
 }

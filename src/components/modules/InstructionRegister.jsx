@@ -8,20 +8,7 @@ import LedNibble from '../ui/led/LedNibble'
 import { useColor } from '../ui/Colors'
 
 import { getBinary } from '../hooks/helper'
-
-const BASE_MICROCODE = {
-    '0000': 'NOP',
-    '0001': 'LDA',
-    '0010': 'ADD',
-    '0011': 'SUB',
-    '0100': 'STA',
-    '0101': 'LDI',
-    '0110': 'JMP',
-    '0111': 'JC',
-    1000: 'JZ',
-    1110: 'OUT',
-    1111: 'HLT'
-}
+import BASE_MICROCODE from '../hooks/BASE_MICROCODE'
 
 function InstructionRegister({ pins }) {
     const instruction = getBinary(pins.slice(0, 4))

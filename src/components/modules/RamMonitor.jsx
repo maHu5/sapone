@@ -35,6 +35,19 @@ function RamMonitor({ ram: initialRam, onSave, onCancel, opened }) {
             </div>
 
             <div className="ram-monitor-footer">
+                <div className="assembly">
+                    <span>0000: NOP</span>
+                    <span>0001: LDA</span>
+                    <span>0010: ADD</span>
+                    <span>0011: SUB</span>
+                    <span>0100: STA</span>
+                    <span>0101: LDI</span>
+                    <span>0110: JMP</span>
+                    <span>0111: JC</span>
+                    <span>1000: JZ</span>
+                    <span>1110: OUT</span>
+                    <span>1111: HLT</span>
+                </div>
                 <Button label="save" onClick={() => onSave(ram)} />
                 <Button label="cancel" onClick={onCancel} />
             </div>

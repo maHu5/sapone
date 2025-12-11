@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Button from '../ui/buttons/Button'
+import ResetButton from '../ui/buttons/ResetButton'
 import Slot from '../ui/slot/Slot'
 import SlotRow from '../ui/slot/SlotRow'
 import SlotGroup from '../ui/slot/SlotGroup'
@@ -10,7 +11,7 @@ function Reset({ onButtonDown, onButtonUp }) {
         <Slot title="Reset" className="reset">
             <SlotRow>
                 <SlotGroup>
-                    <Button label="reset" onMouseDown={onButtonDown} onMouseUp={onButtonUp} />
+                    <ResetButton onMouseDown={onButtonDown} onMouseUp={onButtonUp} />
                 </SlotGroup>
             </SlotRow>
         </Slot>

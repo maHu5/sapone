@@ -9,6 +9,7 @@ import { useColor } from '../ui/Colors'
 
 import SevenSegmentDisplay from '../ui/sevensegment/SevenSegmentDisplay'
 import ToggleButton from '../ui/buttons/ToggleButton'
+import PlusMinusButton from '../ui/buttons/PlusMinusButton'
 
 function InputOutput({ pins, setPins }) {
     const color = useColor('input-output')
@@ -36,12 +37,7 @@ function InputOutput({ pins, setPins }) {
                     </div>
                 </SlotGroup>
                 <SlotGroup>
-                    <ToggleButton
-                        onLabel={'signed'}
-                        offLabel={'unsigned'}
-                        active={isSigned}
-                        onToggle={() => setIsSigned((s) => !s)}
-                    />
+                    <PlusMinusButton active={isSigned} onToggle={() => setIsSigned((s) => !s)} />
                 </SlotGroup>
             </SlotRow>
             <SlotRow>

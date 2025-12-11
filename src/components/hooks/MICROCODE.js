@@ -54,8 +54,10 @@ const MICROCODE = {}
 
 for (const flags of ['00', '01', '10', '11']) {
     const clone = JSON.parse(JSON.stringify(BASE_MICROCODE))
-    clone[0] = ['co', 'mi']
-    clone[1] = ['ro', 'ii', 'ce']
+    for (const key in clone) {
+        clone[key][0] = ['co', 'mi']
+        clone[key][1] = ['ro', 'ii', 'ce']
+    }
 
     // FLAGS
     // F F

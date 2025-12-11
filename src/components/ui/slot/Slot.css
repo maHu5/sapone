@@ -3,3 +3,15 @@
     margin-top: 0.25em;
     margin-bottom: 0;
 }
+
+.slot-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.slot-right {
+    display: flex;
+    align-items: center;
+}

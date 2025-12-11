@@ -3,12 +3,12 @@ import PropTypes from 'prop-types'
 import Led from '../ui/led/Led'
 import { useColor } from '../ui/Colors'
 
-import Button from '../ui/buttons/Button'
-
 import Slot from '../ui/slot/Slot'
 import SlotRow from '../ui/slot/SlotRow'
 import SlotGroup from '../ui/slot/SlotGroup'
 import ToggleButton from '../ui/buttons/ToggleButton'
+import StepButton from '../ui/buttons/StepButton'
+import StartStopButton from '../ui/buttons/StartStopButton'
 
 function Clock({ clock, clockButtonDown, clockButtonUp, isRunning, toggleRunning }) {
     const color = useColor('clock')
@@ -19,10 +19,10 @@ function Clock({ clock, clockButtonDown, clockButtonUp, isRunning, toggleRunning
                     <Led on={clock} color={color} />
                 </SlotGroup>
                 <SlotGroup>
-                    <Button label="step" onMouseDown={clockButtonDown} onMouseUp={clockButtonUp} />
+                    <StepButton onMouseDown={clockButtonDown} onMouseUp={clockButtonUp} />
                 </SlotGroup>
                 <SlotGroup>
-                    <ToggleButton onLabel={'stop'} offLabel={'run'} active={isRunning} onToggle={toggleRunning} />
+                    <StartStopButton active={isRunning} onToggle={toggleRunning} />
                 </SlotGroup>
             </SlotRow>
         </Slot>

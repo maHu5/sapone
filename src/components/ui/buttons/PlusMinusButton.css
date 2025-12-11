@@ -1,0 +1,40 @@
+.plus-minus-wrapper {
+    display: flex;
+    border-radius: 4px;
+    overflow: hidden;
+    cursor: pointer;
+    user-select: none;
+}
+
+.plus-button,
+.minus-button {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4px 0;
+    transition: background 0.2s ease;
+    color: white;
+}
+
+.plus-button > svg,
+.minus-button > svg {
+    padding: 0 4px;
+}
+
+/* Aktiver Status = grün, Inaktiv = grau */
+.plus-button.active,
+.minus-button.active {
+    background-color: #237e06; /* grün */
+}
+
+.plus-button.inactive,
+.minus-button.inactive {
+    background-color: #555; /* grau */
+}
+
+/* Optional: Hover Effekt */
+.plus-button:hover:not(.inactive),
+.minus-button:hover:not(.inactive) {
+    filter: brightness(1.1);
+}

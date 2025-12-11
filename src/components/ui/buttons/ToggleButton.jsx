@@ -10,7 +10,7 @@ function ToggleButton({ active, onLabel, offLabel, onToggle, className = '' }) {
             {/* Invisible element that defines the width */}
             <span className="toggle-button-ghost">{longestLabel}</span>
 
-            <button onClick={onToggle} className={`toggle-button ${active ? 'active' : ''}`}>
+            <button type="button" onClick={onToggle} className={`toggle-button ${active ? 'active' : ''}`}>
                 {active ? onLabel : offLabel}
             </button>
         </div>

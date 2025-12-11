@@ -5,6 +5,8 @@ import Led from '../ui/led/Led'
 import { useColor } from '../ui/Colors'
 import { boolArrayToInt } from '../hooks/helper'
 import ToggleButton from '../ui/buttons/ToggleButton'
+import Switch from '../ui/buttons/Switch'
+
 import Slot from '../ui/slot/Slot'
 import SlotRow from '../ui/slot/SlotRow'
 import SlotGroup from '../ui/slot/SlotGroup'
@@ -19,7 +21,7 @@ function ControlUnit({ pins, enabled, onClick }) {
 
     const t = boolArrayToInt(pins)
     return (
-        <Slot title="ControlUnit" className="control-unit">
+        <Slot title="ControlUnit" className="control-unit" component={<Switch active={enabled} onToggle={onClick} />}>
             <SlotRow>
                 <SlotGroup>
                     <Led on={pins[5]} color={color1} />
@@ -32,9 +34,6 @@ function ControlUnit({ pins, enabled, onClick }) {
                     <Led on={t !== 2} color={color2} />
                     <Led on={t !== 3} color={color2} />
                     <Led on={t !== 4} color={color2} />
-                </SlotGroup>
-                <SlotGroup>
-                    <ToggleButton onLabel={'on'} offLabel={'off'} active={enabled} onToggle={onClick} />
                 </SlotGroup>
             </SlotRow>
         </Slot>

@@ -3,35 +3,37 @@
     display: inline-block;
 }
 
-/* The visible button */
-.toggle-button {
-    background: #333;
-    color: white;
-    border: none;
-    padding: 4px 16px;
-    cursor: pointer;
-    border-radius: 4px;
-    font-family: inherit;
-    transition: background 0.1s ease-in-out;
-    width: 100%;
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-}
-
-.toggle-button.active {
-    background: #444;
-}
-
-.toggle-button:hover {
-    background: #555;
-}
-
-/* The invisible "ghost" element defines the width */
+/* Unsichtbares Element bestimmt die Breite */
 .toggle-button-ghost {
     visibility: hidden;
     white-space: nowrap;
     display: inline-block;
     padding: 4px 16px;
     font-family: inherit;
+}
+
+/* Der sichtbare Button */
+.toggle-button {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    padding: 4px 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: background 0.1s ease-in-out;
+}
+
+/* Aktiver Zustand */
+.toggle-button.active {
+    background-color: #444;
+}
+
+/* Hover-Effekt */
+.toggle-button:hover:not(:disabled) {
+    background-color: #555;
 }
