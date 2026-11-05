@@ -1,5 +1,5 @@
-import { describe, it, expect } from 'vitest'
 
+import { describe, it, expect } from 'vitest'
 import { renderHook, act } from '@testing-library/react'
 import useControls from './useControls'
 
@@ -7,12 +7,16 @@ describe('useControls', () => {
     it('should return a default value', () => {
         const { result } = renderHook(() => useControls())
 
+        expect(result.current.cue).toBe(true)
+        expect(result.current.rst).toBe(false)
+
         act(() => {
-            result.current.setHlt(true)
-            result.current.setOo(true)
+            result.current.setCmd('hlt', true)
+            result.current.setCmd('oo', true)
         })
-        expect(result.current.hlt).toBeTruthy()
-        expect(result.current.oo).toBeTruthy()
+
+        expect(result.current.controlFlags.hlt).toBe(true)
+        expect(result.current.controlFlags.oo).toBe(true)
         expect(result.current.getActiveControlFlags()).toHaveLength(2)
         expect(result.current.getActiveControlFlags()).toEqual(['hlt', 'oo'])
 
@@ -20,8 +24,8 @@ describe('useControls', () => {
             result.current.clearControlFlags()
         })
 
-        expect(result.current.hlt).toBeFalsy()
-        expect(result.current.oo).toBeFalsy()
+        expect(result.current.controlFlags.hlt).toBe(false)
+        expect(result.current.controlFlags.oo).toBe(false)
         expect(result.current.getActiveControlFlags()).toHaveLength(0)
 
         act(() => {
@@ -45,6 +49,7 @@ describe('useControls', () => {
                 'jmp'
             ])
         })
+
         expect(result.current.getActiveControlFlags()).toHaveLength(17)
     })
 })
