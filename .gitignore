@@ -24,3 +24,5 @@ workshop/*
 *.njsproj
 *.sln
 *.sw?
+
+/CONFIG.md
