@@ -17,15 +17,17 @@ function splitThreeChars(str) {
     }
 }
 
-function Signal({ name, on, onClick, color = '#668ba4' }) {
+function Signal({ name, on, onClick, color = '#668ba4', colorOn = "#668ba4" }) {
     const [a, b, c] = splitThreeChars(name.toUpperCase())
 
     return (
-        <div className="signal" onClick={onClick}>
-            <div>{a}</div>
-            <div>{b}</div>
-            <div>{c}</div>
-            <Led on={on} color={color} />
+        <div className="signal-main" >
+            <Led on={on} color={color} colorOn={colorOn} />
+            <div className="signal-button" onClick={onClick} >
+                {a !== '\u00A0' && <div>{a}</div>}
+                {b !== '\u00A0' && <div>{b}</div>}
+                {c !== '\u00A0' && <div>{c}</div>}
+            </div>
         </div>
     )
 }

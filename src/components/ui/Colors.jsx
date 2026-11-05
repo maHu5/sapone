@@ -19,6 +19,8 @@ export const DefaultColors = {
     "flags-on": '#08ec61',
     'input-output': '#300000',
     'input-output-on': '#ff0204',
+    signal: '#001B38',
+    'signal-on': '#0077FF',
 
     'program-counter': '#237e06',
     'memory-address-register': '#ffb300',
@@ -28,7 +30,7 @@ export const DefaultColors = {
     'control-unit-phase': '#f70821', // semantic phase indicator (e.g. fetch/execute)
     'control-unit-t-cycle': '#237e06', // T-cycle indicator (e.g. T1/T2)
     clock: '#1d3ac2',
-    signal: '#1d3ac2',
+
     disabled: '#555'
 }
 
