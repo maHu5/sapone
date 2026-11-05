@@ -10,31 +10,37 @@ import { useColors } from '../ui/Colors'
 function getColors(name, colors) {
     if (name) {
         const key = `register-${name.toLowerCase()}`
-        return { ledColor: colors[key], zeroFlagColor: colors[`${key}-flag`] }
+        return { ledColor: colors[key], ledOnColor: colors[`${key}-on`], zeroFlagColor: colors[`${key}-flag`], zeroFlagOnColor: colors[`${key}-flag-on`] }
     } else {
-        return { ledColor: '#ffd166', zeroFlagColor: undefined }
+        return { ledColor: '#ffd166', ledOnColor: '#ffd166', zeroFlagColor: undefined, zeroFlagOnColor: undefined }
     }
 }
 
 function Register({ name, pins, zeroFlag }) {
     const colors = useColors()
-    let { ledColor, zeroFlagColor } = getColors(name, colors)
-
+    let { ledColor, ledOnColor, zeroFlagColor, zeroFlagOnColor } = getColors(name, colors)
     return (
         <Slot title={name + ' Register'} className="register">
             <SlotRow>
                 <SlotGroup>
-                    <LedNibble values={pins.slice(0, 4)} color={ledColor} />
+                    <LedNibble values={pins.slice(0, 4)} color={ledColor} colorOn={ledOnColor} />
                 </SlotGroup>
                 <SlotGroup>
-                    <LedNibble values={pins.slice(4)} color={ledColor} />
+                    <LedNibble values={pins.slice(4)} color={ledColor} colorOn={ledOnColor} />
                 </SlotGroup>
-                {zeroFlag !== undefined ? (
-                    <SlotGroup>
-                        <Led on={zeroFlag} color={zeroFlagColor} />
-                    </SlotGroup>
-                ) : null}
             </SlotRow>
+            {zeroFlag !== undefined ? (
+                <>
+                    <SlotRow>
+                        <SlotGroup>
+                            <Led on={zeroFlag} color={zeroFlagColor} colorOn={zeroFlagOnColor} />
+                        </SlotGroup>
+                        <div className="slot-header">
+                            <h2>{"Zero Flag"}</h2>
+                        </div>
+                    </SlotRow>
+                </>
+            ) : null}
         </Slot>
     )
 }

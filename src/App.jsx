@@ -21,7 +21,6 @@ import useRegisterManager from './components/hooks/useRegisterManager'
 import useControlUnit from './components/hooks/useControlUnit'
 import RamMonitor from './components/modules/RamMonitor'
 import Reset from './components/modules/Reset'
-import Led from './components/ui/led/Led'
 import Lightbox from './components/ui/ram/Lightbox'
 
 function App() {

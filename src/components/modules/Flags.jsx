@@ -3,19 +3,29 @@ import PropTypes from 'prop-types'
 import Slot from '../ui/slot/Slot'
 import SlotRow from '../ui/slot/SlotRow'
 import SlotGroup from '../ui/slot/SlotGroup'
-import Flag from '../ui/led/Flag'
+import Led from '../ui/led/Led'
 import { useColor } from '../ui/Colors'
 function Flags({ pins }) {
     const color = useColor('flags')
+    const colorOn = useColor('flags-on')
+
     return (
         <Slot title="Flags Register" className="flags">
             <SlotRow>
                 <SlotGroup>
-                    <Flag on={pins[0]} labels={['C', 'F']} color={color} />
+                    <Led on={pins[0]} color={color} colorOn={colorOn} />
                 </SlotGroup>
+                <div className="slot-header">
+                    <h2>{"Carry Flag"}</h2>
+                </div>
+            </SlotRow>
+            <SlotRow>
                 <SlotGroup>
-                    <Flag on={pins[1]} labels={['Z', 'F']} color={color} />
+                    <Led on={pins[1]} color={color} colorOn={colorOn} />
                 </SlotGroup>
+                <div className="slot-header">
+                    <h2>{"Zero Flag"}</h2>
+                </div>
             </SlotRow>
         </Slot>
     )

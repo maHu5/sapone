@@ -13,6 +13,7 @@ import PlusMinusButton from '../ui/buttons/PlusMinusButton'
 
 function InputOutput({ pins, setPins }) {
     const color = useColor('input-output')
+    const colorOn = useColor('input-output-on')
     const [isSigned, setIsSigned] = useState(false)
 
     const togglePin = (index) => {
@@ -42,10 +43,10 @@ function InputOutput({ pins, setPins }) {
             </SlotRow>
             <SlotRow>
                 <SlotGroup>
-                    <LedNibble values={pins.slice(0, 4)} color={color} onToggle={(i) => togglePin(i)} />
+                    <LedNibble values={pins.slice(0, 4)} color={color} colorOn={colorOn} onToggle={(i) => togglePin(i)} />
                 </SlotGroup>
                 <SlotGroup>
-                    <LedNibble values={pins.slice(4)} color={color} onToggle={(i) => togglePin(4 + i)} />
+                    <LedNibble values={pins.slice(4)} color={color} colorOn={colorOn} onToggle={(i) => togglePin(4 + i)} />
                 </SlotGroup>
             </SlotRow>
         </Slot>

@@ -4,17 +4,26 @@ import classNames from 'classnames'
 
 import './Led.css'
 
-function Led({ on = false, color = 'green', onClick, style = {} }) {
+function Led({ on = false, color = 'green', colorOn = 'transparent', onClick, style = {} }) {
     return (
-        <div
-            className={classNames('led', { on, clickable: !!onClick })}
-            style={{
-                '--led-color': color,
-                '--led-bg': on ? color : 'transparent',
-                ...style
-            }}
-            onClick={onClick}
-        />
+        <div className='led-main'>
+            <div className='led-container'>
+                {on && <div className="led-glow" style={{
+                    '--led-glow-color': colorOn,
+                }} />}
+                <div
+                    className={classNames('led', { on })}
+                    style={{
+                        '--led-color': on ? colorOn : color,
+                        '--led-bg': on ? colorOn : color,
+                        ...style
+                    }}
+                >
+                    {on && <div className='glow' />}
+                </div>
+            </div>
+            {!!onClick && <div onClick={onClick} className={classNames("led-button", { clickable: !!onClick })}></div>}
+        </div>
     )
 }
 
