@@ -13,7 +13,13 @@ export default function LedNibble({ values, color = 'red', colorOn = 'transparen
     return (
         <>
             {values.map((on, i) => (
-                <Led key={i} on={on} color={color} colorOn={colorOn} {...(onToggle ? { onClick: () => onToggle(i) } : {})} />
+                <Led
+                    key={i}
+                    on={on}
+                    color={color}
+                    colorOn={colorOn}
+                    {...(onToggle ? { onClick: () => onToggle(i) } : {})}
+                />
             ))}
         </>
     )
@@ -22,5 +28,6 @@ export default function LedNibble({ values, color = 'red', colorOn = 'transparen
 LedNibble.propTypes = {
     values: PropTypes.arrayOf(PropTypes.bool).isRequired,
     color: PropTypes.string,
+    colorOn: PropTypes.string,
     onToggle: PropTypes.func
 }

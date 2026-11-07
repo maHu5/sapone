@@ -19,7 +19,8 @@ function ControlSignals({ cntl }) {
                         <Signal
                             key={key}
                             name={key}
-                            color={color} colorOn={colorOn}
+                            color={color}
+                            colorOn={colorOn}
                             on={cntl.controlFlags[key]}
                             onClick={() => cntl.toggleCmd(key)}
                         />

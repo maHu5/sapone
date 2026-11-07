@@ -8,14 +8,14 @@ import LedNibble from '../ui/led/LedNibble'
 import { useColor } from '../ui/Colors'
 import Led from '../ui/led/Led'
 
-function Alu({ pins, carryFlag }) {
+function Alu({ pins, carryFlag, leftControl, rightControl }) {
     const color = useColor('alu')
     const colorOn = useColor('alu-on')
     const colorCarry = useColor('alu-carry')
     const colorOnCarry = useColor('alu-carry-on')
 
     return (
-        <Slot title="ALU" className="alu">
+        <Slot title="ALU" className="alu" leftControl={leftControl} rightControl={rightControl}>
             <SlotRow>
                 <SlotGroup>
                     <LedNibble values={pins.slice(0, 4)} color={color} colorOn={colorOn} />
@@ -29,7 +29,7 @@ function Alu({ pins, carryFlag }) {
                     <Led on={carryFlag} color={colorCarry} colorOn={colorOnCarry} />
                 </SlotGroup>
                 <div className="slot-header">
-                    <h2>{"Carry Flag"}</h2>
+                    <h2>{'Carry Flag'}</h2>
                 </div>
             </SlotRow>
         </Slot>
@@ -38,6 +38,8 @@ function Alu({ pins, carryFlag }) {
 
 Alu.propTypes = {
     pins: PropTypes.arrayOf(PropTypes.bool).isRequired,
+    leftControl: PropTypes.node,
+    rightControl: PropTypes.node,
     carryFlag: PropTypes.bool
 }
 
