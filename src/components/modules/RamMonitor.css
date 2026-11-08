@@ -2,8 +2,9 @@
     display: flex;
     flex-direction: column;
     border: 1px solid #666;
-    background-color: #ddd;
+    background-color: #242424;
     padding: 0em !important;
+    color: #aaa;
 }
 
 .ram-monitor-header {
@@ -26,7 +27,7 @@
 
 .ram-monitor-footer {
     display: flex;
-    align-items: center; /* verhindert, dass Buttons hochgezogen werden */
+    align-items: center;
     gap: 10px;
     border-top: 1px solid #666;
 }
@@ -37,8 +38,8 @@
 
 .ram-monitor-footer div {
     flex: 1;
-    display: grid; /* Grid statt Flex */
-    grid-template-columns: repeat(6, auto); /* 6 Spalten in der ersten Reihe */
+    display: grid;
+    grid-template-columns: repeat(6, auto);
     grid-auto-rows: auto;
     gap: 8px;
     padding: 6px;

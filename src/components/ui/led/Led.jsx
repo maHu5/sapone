@@ -4,10 +4,10 @@ import classNames from 'classnames'
 
 import './Led.css'
 
-function Led({ on = false, color = 'green', colorOn = 'transparent', onClick, style = {} }) {
+function Led({ on = false, color = 'green', colorOn = 'transparent', onClick, styles = {} }) {
     return (
         <div className="led-main">
-            <div className="led-container">
+            <div className="led-container" style={styles?.ledContainer ?? {}}>
                 {on && (
                     <div
                         className="led-glow"
@@ -21,7 +21,7 @@ function Led({ on = false, color = 'green', colorOn = 'transparent', onClick, st
                     style={{
                         '--led-color': on ? colorOn : color,
                         '--led-bg': on ? colorOn : color,
-                        ...style
+                        ...(styles?.led ?? {})
                     }}
                 >
                     {on && <div className="glow" />}
@@ -37,7 +37,7 @@ Led.propTypes = {
     color: PropTypes.string,
     colorOn: PropTypes.string,
     onClick: PropTypes.func,
-    style: PropTypes.object
+    styles: PropTypes.object
 }
 
 export default Led

@@ -48,8 +48,8 @@ function RamMonitor({ ram: initialRam, onSave, onCancel, opened }) {
                     <span>1110: OUT</span>
                     <span>1111: HLT</span>
                 </div>
-                <Button label="save" onClick={() => onSave(ram)} />
-                <Button label="cancel" onClick={onCancel} />
+                <Button label="Save" onClick={() => onSave(ram)} />
+                <Button label="Cancel" onClick={onCancel} />
             </div>
         </div>
     )

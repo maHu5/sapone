@@ -5,10 +5,22 @@ import { defineConfig } from 'eslint/config'
 
 export default defineConfig([
     {
+        ignores: ['build/**', 'dist/**']
+    },
+    {
         files: ['**/*.{js,mjs,cjs,jsx}'],
         plugins: { js },
         extends: ['js/recommended'],
-        languageOptions: { globals: { ...globals.browser, ...globals.node } }
+        languageOptions: {
+            globals: { ...globals.browser, ...globals.node }
+        }
     },
-    pluginReact.configs.flat.recommended
+    {
+        ...pluginReact.configs.flat.recommended,
+        settings: {
+            react: {
+                version: 'detect'
+            }
+        }
+    }
 ])
