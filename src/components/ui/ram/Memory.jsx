@@ -3,26 +3,62 @@ import PropTypes from 'prop-types'
 import Led from '../led/Led'
 import './Memory.css'
 
+import BASE_MICROCODE from '../../hooks/BASE_MICROCODE'
+
 export function BitAddress({ value }) {
     const bits = value.toString(2).padStart(4, '0').split('')
     return (
         <div className="bit-address">
             {bits.map((bit, i) => (
-                <Led color="#f1b963" key={i} on={bit === '1'} />
+                <Led
+                    color="#493e0b"
+                    colorOn="#9f7902"
+                    key={i}
+                    on={bit === '1'}
+                    styles={{ ledContainer: { margin: '0 0' } }}
+                />
             ))}
         </div>
     )
 }
-
 BitAddress.propTypes = {
     value: PropTypes.number.isRequired // 0–15 address value
+}
+
+export function BitCode({ value, code }) {
+    const address = '$' + value.toString(16).padStart(2, '0').toUpperCase()
+    const myCode = code.slice(0, 4).map(Number).join('')
+    const optCode = BASE_MICROCODE[myCode]
+    const binary = code.slice(4, 8).map(Number).join('')
+    let hex = '$' + parseInt(binary, 2).toString(16).toUpperCase().padStart(2, '0')
+
+    const singleCMDs = ['NOP', 'OUT', 'HLT']
+    if (singleCMDs.includes(optCode)) {
+        hex = ''
+    }
+    if (optCode == 'LDI') {
+        hex = '#' + hex
+    }
+
+    return (
+        <div className="bit-code">
+            <span className="address">{address}</span>
+            <span className="opt-code">{optCode}</span>
+            <span className="hex">{hex}</span>
+        </div>
+    )
+}
+
+BitCode.propTypes = {
+    value: PropTypes.number.isRequired,
+    code: PropTypes.arrayOf(PropTypes.bool).isRequired
 }
 
 export function BitData({ bits = [], onToggle }) {
     return (
         <div className="bit-data">
             {bits.map((bit, i) => (
-                <Led key={i} on={!!bit} onClick={() => onToggle(i)} />
+                <Led key={i} on={!!bit} color="#300000" colorOn="#ff0204" onClick={() => onToggle(i)} />
             ))}
         </div>
     )
@@ -38,14 +74,14 @@ export function MemoryHeader() {
         <>
             <div className="memory-header-cell">Addr</div>
             <div className="memory-header-cell">Data</div>
+            <div className="memory-header-cell"></div>
             <div className="memory-spacer" />
             <div className="memory-header-cell">Addr</div>
             <div className="memory-header-cell">Data</div>
+            <div className="memory-header-cell"></div>
         </>
     )
 }
-
-// Header hat keine Props → kein PropTypes nötig
 
 export default function Memory({ ram = [], onToggle }) {
     if (ram == null) return null
@@ -61,9 +97,11 @@ export default function Memory({ ram = [], onToggle }) {
                     <Fragment key={index}>
                         <BitAddress value={index} />
                         <BitData bits={ram1[index]} onToggle={(x) => onToggle(index, x)} />
+                        <BitCode value={index} code={ram1[index]} />
                         <div className="memory-spacer" />
                         <BitAddress value={index + 8} />
                         <BitData bits={ram2[index]} onToggle={(x) => onToggle(index + 8, x)} />
+                        <BitCode value={index + 8} code={ram2[index]} />
                     </Fragment>
                 ))}
             </div>

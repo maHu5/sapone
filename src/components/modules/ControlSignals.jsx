@@ -10,6 +10,7 @@ import { CONTROL_NAMES } from '../hooks/useControls'
 
 function ControlSignals({ cntl }) {
     const color = useColor('signal')
+    const colorOn = useColor('signal-on')
     return (
         <Slot title="Control Signals" className="control-signals">
             <SlotRow>
@@ -19,6 +20,7 @@ function ControlSignals({ cntl }) {
                             key={key}
                             name={key}
                             color={color}
+                            colorOn={colorOn}
                             on={cntl.controlFlags[key]}
                             onClick={() => cntl.toggleCmd(key)}
                         />

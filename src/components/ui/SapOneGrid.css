@@ -1,15 +1,19 @@
 .sap-one-grid {
-    width: fit-content;
-    background-color: #ddd;
     display: grid;
+    width: fit-content;
+    background-color: #333;
     border: 1px solid #666;
-    grid-template-columns: 260px 290px 260px;
+    grid-template-columns: 260px 260px 260px;
     grid-template-rows: auto auto;
     position: relative;
+    color: var(--grid-text-color);
 }
 
 .sap-one-grid > div {
-    padding: 0em 1em 0.5em 1em;
+    padding-top: 0em;
+    padding-right: 1em;
+    padding-bottom: 0.5em;
+    padding-left: 1em;
 }
 
 .sap-one-grid > div:nth-child(1) {

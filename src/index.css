@@ -12,6 +12,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     --text-color: #213547;
+    --grid-text-color: #ffffff;
 }
 
 body {
@@ -22,10 +23,12 @@ body {
     color: var(--text-color);
     padding: 1em;
 }
+
 h1 {
     font-size: 1.2rem;
     margin-bottom: 0.25em;
 }
+
 @media (prefers-color-scheme: light) {
     :root {
         color: #213547;

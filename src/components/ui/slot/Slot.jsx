@@ -4,20 +4,26 @@ import classNames from 'classnames'
 
 import './Slot.css'
 
-function Slot({ title, component, children, className, gap }) {
+function Slot({ title, leftControl, rightControl, children, className, gap }) {
     return (
         <div className={classNames('slot', className, { gap })}>
-            <div className="slot-header">
-                <h1>{title}</h1>
-                {component && <div className="slot-right">{component}</div>}
+            {leftControl}
+            <div className="slot-main">
+                <div className="slot-header">
+                    <h1>{title}</h1>
+                </div>
+                {children}
             </div>
-            {children}
+            {rightControl}
         </div>
     )
 }
 
 Slot.propTypes = {
     title: PropTypes.string.isRequired,
+    slotRightComponent: PropTypes.node,
+    leftControl: PropTypes.node,
+    rightControl: PropTypes.node,
     component: PropTypes.node,
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
@@ -25,10 +31,3 @@ Slot.propTypes = {
 }
 
 export default Slot
-
-/*
- <IOSSwitch 
-        initial={false}
-        onChange={(val) => console.log("Switch:", val)}
-      />
-*/

@@ -10,31 +10,43 @@ import { useColors } from '../ui/Colors'
 function getColors(name, colors) {
     if (name) {
         const key = `register-${name.toLowerCase()}`
-        return { ledColor: colors[key], zeroFlagColor: colors[`${key}-flag`] }
+        return {
+            ledColor: colors[key],
+            ledOnColor: colors[`${key}-on`],
+            zeroFlagColor: colors[`${key}-flag`],
+            zeroFlagOnColor: colors[`${key}-flag-on`]
+        }
     } else {
-        return { ledColor: '#ffd166', zeroFlagColor: undefined }
+        return { ledColor: '#ffd166', ledOnColor: '#ffd166', zeroFlagColor: undefined, zeroFlagOnColor: undefined }
     }
 }
 
-function Register({ name, pins, zeroFlag }) {
+function Register({ name, pins, zeroFlag, leftControl, rightControl }) {
     const colors = useColors()
-    let { ledColor, zeroFlagColor } = getColors(name, colors)
+    let { ledColor, ledOnColor, zeroFlagColor, zeroFlagOnColor } = getColors(name, colors)
 
     return (
-        <Slot title={name + ' Register'} className="register">
+        <Slot title={name + ' Register'} className="register" leftControl={leftControl} rightControl={rightControl}>
             <SlotRow>
                 <SlotGroup>
-                    <LedNibble values={pins.slice(0, 4)} color={ledColor} />
+                    <LedNibble values={pins.slice(0, 4)} color={ledColor} colorOn={ledOnColor} />
                 </SlotGroup>
                 <SlotGroup>
-                    <LedNibble values={pins.slice(4)} color={ledColor} />
+                    <LedNibble values={pins.slice(4)} color={ledColor} colorOn={ledOnColor} />
                 </SlotGroup>
-                {zeroFlag !== undefined ? (
-                    <SlotGroup>
-                        <Led on={zeroFlag} color={zeroFlagColor} />
-                    </SlotGroup>
-                ) : null}
             </SlotRow>
+            {zeroFlag !== undefined ? (
+                <>
+                    <SlotRow>
+                        <SlotGroup>
+                            <Led on={zeroFlag} color={zeroFlagColor} colorOn={zeroFlagOnColor} />
+                        </SlotGroup>
+                        <div className="slot-header">
+                            <h2>{'Zero Flag'}</h2>
+                        </div>
+                    </SlotRow>
+                </>
+            ) : null}
         </Slot>
     )
 }
@@ -42,6 +54,8 @@ function Register({ name, pins, zeroFlag }) {
 Register.propTypes = {
     name: PropTypes.string,
     pins: PropTypes.arrayOf(PropTypes.bool).isRequired,
+    leftControl: PropTypes.node,
+    rightControl: PropTypes.node,
     zeroFlag: PropTypes.bool
 }
 

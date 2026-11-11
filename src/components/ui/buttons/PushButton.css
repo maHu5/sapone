@@ -1,0 +1,136 @@
+.push-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+    min-height: 22px;
+    width: auto;
+
+    padding: 2px 5px;
+    margin-top: 3px;
+
+    border: 1px solid #111;
+    border-radius: 3px;
+
+    background: linear-gradient(180deg, #555 0%, #333 50%, #222 100%);
+
+    box-shadow:
+        0 2px 3px rgba(0, 0, 0, 0.5),
+        inset 0 1px 1px rgba(255, 255, 255, 0.15);
+
+    cursor: pointer;
+    user-select: none;
+
+    transition:
+        transform 80ms,
+        box-shadow 80ms;
+}
+
+/* Inhalt */
+.button-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+/* Beschriftung */
+.button-label {
+    display: block;
+    position: relative;
+    top: -2px;
+    z-index: 1;
+    line-height: 10px;
+
+    text-align: center;
+    white-space: nowrap;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    color: #777;
+
+    text-shadow:
+        0px 1px 0px rgba(255, 255, 255, 0.7),
+        0px -1px 1px rgba(0, 0, 0, 0.95);
+}
+
+/* LED Container */
+.button-led-container {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 4px;
+    height: 4px;
+
+    flex-shrink: 0;
+    z-index: 1;
+}
+
+/* LED Glow */
+.button-led-glow {
+    position: absolute;
+
+    width: 14px;
+    height: 14px;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background: radial-gradient(circle, var(--led-glow-color) 0%, transparent 70%);
+
+    opacity: 0.8;
+    filter: blur(4px);
+
+    pointer-events: none;
+}
+
+/* LED */
+.button-led {
+    position: relative;
+
+    width: 4px;
+    height: 4px;
+
+    border-radius: 50%;
+
+    background-color: var(--led-bg);
+
+    box-sizing: border-box;
+}
+
+/* LED ON */
+.button-led.on {
+    background-color: var(--led-color);
+}
+
+/* LED Lichtreflex */
+.button-led-highlight {
+    position: absolute;
+
+    width: 5px;
+    height: 5px;
+
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border-radius: 50%;
+
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.05) 60%, transparent 100%);
+
+    pointer-events: none;
+}
+
+/* Pushbutton gedrückt */
+.push-button:active {
+    transform: translateY(2px);
+
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
+}

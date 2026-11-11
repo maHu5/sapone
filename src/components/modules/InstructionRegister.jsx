@@ -10,24 +10,35 @@ import { useColor } from '../ui/Colors'
 import { getBinary } from '../hooks/helper'
 import BASE_MICROCODE from '../hooks/BASE_MICROCODE'
 
-function InstructionRegister({ pins }) {
+function InstructionRegister({ pins, leftControl, rightControl }) {
     const instruction = getBinary(pins.slice(0, 4))
     const address = getBinary(pins.slice(4))
+
     const instructionColor = useColor('instruction-register-instruction')
+    const instructionColorOn = useColor('instruction-register-instruction-on')
     const addressColor = useColor('instruction-register-address')
+    const addressColorOn = useColor('instruction-register-address-on')
+
     return (
-        <Slot title="InstructionRegister" className="instruction-register">
+        <Slot
+            title="Instruction Register"
+            className="instruction-register"
+            leftControl={leftControl}
+            rightControl={rightControl}
+        >
             <SlotRow>
                 <SlotGroup>
-                    <LedNibble values={pins.slice(0, 4)} color={instructionColor} />
+                    <LedNibble values={pins.slice(0, 4)} color={instructionColor} colorOn={instructionColorOn} />
                 </SlotGroup>
                 <SlotGroup>
-                    <LedNibble values={pins.slice(0, 4)} color={addressColor} />
+                    <LedNibble values={pins.slice(4)} color={addressColor} colorOn={addressColorOn} />
                 </SlotGroup>
             </SlotRow>
             <SlotRow>
                 <SlotGroup>
-                    <span>{BASE_MICROCODE[instruction] + ': ' + address}</span>
+                    <span style={{ fontSize: '.7rem', fontWeight: '400' }}>
+                        {BASE_MICROCODE[instruction] + ': ' + address}
+                    </span>
                 </SlotGroup>
             </SlotRow>
         </Slot>
@@ -35,7 +46,9 @@ function InstructionRegister({ pins }) {
 }
 
 InstructionRegister.propTypes = {
-    pins: PropTypes.arrayOf(PropTypes.bool).isRequired
+    pins: PropTypes.arrayOf(PropTypes.bool).isRequired,
+    leftControl: PropTypes.node,
+    rightControl: PropTypes.node
 }
 
 export default InstructionRegister

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Led from './Led'
 
-export default function LedNibble({ values, color = 'red', onToggle }) {
+export default function LedNibble({ values, color = 'red', colorOn = 'transparent', onToggle }) {
     const count = values.length
 
     if (count !== 4) {
@@ -13,7 +13,13 @@ export default function LedNibble({ values, color = 'red', onToggle }) {
     return (
         <>
             {values.map((on, i) => (
-                <Led key={i} on={on} color={color} {...(onToggle ? { onClick: () => onToggle(i) } : {})} />
+                <Led
+                    key={i}
+                    on={on}
+                    color={color}
+                    colorOn={colorOn}
+                    {...(onToggle ? { onClick: () => onToggle(i) } : {})}
+                />
             ))}
         </>
     )
@@ -22,5 +28,6 @@ export default function LedNibble({ values, color = 'red', onToggle }) {
 LedNibble.propTypes = {
     values: PropTypes.arrayOf(PropTypes.bool).isRequired,
     color: PropTypes.string,
+    colorOn: PropTypes.string,
     onToggle: PropTypes.func
 }
