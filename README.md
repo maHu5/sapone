@@ -1,4 +1,5 @@
 # 🧠 SAP-1 Simulation in React
+![Application Preview](screenshots/app-overview.png)
 
 ## Short Description
 
