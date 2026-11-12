@@ -83,7 +83,6 @@ function App() {
     let AluControl = (
         <div className="control">
             <PushButton name={'<'} on={cntl.controlFlags['so']} onClick={() => cntl.toggleCmd('so')} />
-            <PushButton name={'-'} on={cntl.controlFlags['su']} onClick={() => cntl.toggleCmd('su')} />
         </div>
     )
     let FlagsControl = (
@@ -157,7 +156,13 @@ function App() {
                         leftControl={ARegControl}
                     />
                     <Register name="B" pins={state['REGB'].pins} leftControl={BRegControl} />
-                    <Alu pins={state['ALU'].pins} carryFlag={state['ALU'].carryFlag} leftControl={AluControl} />
+                    <Alu
+                        pins={state['ALU'].pins}
+                        carryFlag={state['ALU'].carryFlag}
+                        isSubMode={cntl.controlFlags['su']}
+                        toggleSubMode={() => cntl.toggleCmd('su')}
+                        leftControl={AluControl}
+                    />
                     <Flags pins={state['FR'].pins} leftControl={FlagsControl} />
                     <InputOutput pins={state['IO'].pins} setPins={changeIOPins} leftControl={IOControl} />
                 </SapOnePile>
