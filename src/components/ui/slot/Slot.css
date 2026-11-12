@@ -1,9 +1,19 @@
 .slot {
     border: 1px solid #3a3a3a;
     padding: 5px;
+
     display: flex;
-    flex-direction: row;
     align-items: center;
+    gap: 20px;
+}
+
+.slot>.slot-main {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.slot>.control {
+    flex: 0 0 auto;
 }
 
 .slot-header {
@@ -23,9 +33,4 @@
     font-size: 0.7rem;
     margin-top: 0.25em;
     margin-bottom: 0.25em;
-}
-
-.slot-right {
-    display: flex;
-    align-items: center;
 }

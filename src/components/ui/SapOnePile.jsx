@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 function SapOnePile({ children }) {
-    return <div>{children}</div>
+    return <div className="sap-one-pile">{children}</div>
 }
 
 SapOnePile.propTypes = {

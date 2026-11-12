@@ -27,3 +27,7 @@ workshop/*
 
 /CONFIG.md
 /NOTES.md
+
+# Vite Cache
+.vite/
+node_modules/.vite/
