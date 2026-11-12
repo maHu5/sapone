@@ -1,10 +1,12 @@
 # 🧠 SAP-1 Simulation in React
+![Application Preview](screenshots/app-overview.png)
 
 ## Short Description
 
 This project is an **interactive web simulation** of the **SAP-1 (Simple As Possible Computer)**, inspired by **Ben Eater**.  
 The goal is to visually and interactively demonstrate the core principles of computer architecture (registers, bus system, control logic, ALU, etc.) directly in the browser using **ReactJS**.
 
+[Live Demo](https://mahu5.github.io/sapone/)
 ---
 
 ## Detailed Description
