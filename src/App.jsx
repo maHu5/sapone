@@ -66,73 +66,65 @@ function App() {
         cntl.setCue((v) => !v)
     }
 
-    let controlStyle = {
-        paddingTop: '0px',
-        paddingRight: '15px',
-        paddingBottom: '0px',
-        paddingLeft: '0px'
-    }
-
     let ARegControl = (
-        <div className="control" style={controlStyle}>
+        <div className="control">
             <PushButton name={'>'} on={cntl.controlFlags['ai']} onClick={() => cntl.toggleCmd('ai')} />
             <PushButton name={'<'} on={cntl.controlFlags['ao']} onClick={() => cntl.toggleCmd('ao')} />
         </div>
     )
 
     let BRegControl = (
-        <div className="control" style={controlStyle}>
+        <div className="control">
             <PushButton name={'>'} on={cntl.controlFlags['bi']} onClick={() => cntl.toggleCmd('bi')} />
             <PushButton name={'<'} on={cntl.controlFlags['bo']} onClick={() => cntl.toggleCmd('bo')} />
         </div>
     )
 
     let AluControl = (
-        <div className="control" style={controlStyle}>
+        <div className="control">
             <PushButton name={'<'} on={cntl.controlFlags['so']} onClick={() => cntl.toggleCmd('so')} />
-            <PushButton name={'-'} on={cntl.controlFlags['su']} onClick={() => cntl.toggleCmd('su')} />
         </div>
     )
     let FlagsControl = (
-        <div className="control" style={controlStyle}>
+        <div className="control">
             <PushButton name={'>'} on={cntl.controlFlags['fi']} onClick={() => cntl.toggleCmd('fi')} />
         </div>
     )
 
     let IOControl = (
-        <div className="control" style={controlStyle}>
+        <div className="control">
             <PushButton name={'>'} on={cntl.controlFlags['oi']} onClick={() => cntl.toggleCmd('oi')} />
             <PushButton name={'<'} on={cntl.controlFlags['oo']} onClick={() => cntl.toggleCmd('oo')} />
         </div>
     )
 
     let CounterControl = (
-        <div className="control" style={controlStyle}>
+        <div className="control">
             <PushButton name={'>'} on={cntl.controlFlags['co']} onClick={() => cntl.toggleCmd('co')} />
             <PushButton name={'<'} on={cntl.controlFlags['jmp']} onClick={() => cntl.toggleCmd('jmp')} />
         </div>
     )
 
     let MEMControl = (
-        <div className="control" style={controlStyle}>
+        <div className="control">
             <PushButton name={'<'} on={cntl.controlFlags['mi']} onClick={() => cntl.toggleCmd('mi')} />
         </div>
     )
 
     let RAMControl = (
-        <div className="control" style={controlStyle}>
+        <div className="control">
             <PushButton name={'>'} on={cntl.controlFlags['ro']} onClick={() => cntl.toggleCmd('ro')} />
             <PushButton name={'<'} on={cntl.controlFlags['ri']} onClick={() => cntl.toggleCmd('ri')} />
         </div>
     )
     let InstructionRegisterControl = (
-        <div className="control" style={controlStyle}>
+        <div className="control">
             <PushButton name={'>'} on={cntl.controlFlags['io']} onClick={() => cntl.toggleCmd('io')} />
             <PushButton name={'<'} on={cntl.controlFlags['ii']} onClick={() => cntl.toggleCmd('ii')} />
         </div>
     )
     return (
-        <>
+        <div className="main">
             <h1>SAP One Computer</h1>
             <SapOneGrid>
                 <SapOnePile>
@@ -164,7 +156,13 @@ function App() {
                         leftControl={ARegControl}
                     />
                     <Register name="B" pins={state['REGB'].pins} leftControl={BRegControl} />
-                    <Alu pins={state['ALU'].pins} carryFlag={state['ALU'].carryFlag} leftControl={AluControl} />
+                    <Alu
+                        pins={state['ALU'].pins}
+                        carryFlag={state['ALU'].carryFlag}
+                        isSubMode={cntl.controlFlags['su']}
+                        toggleSubMode={() => cntl.toggleCmd('su')}
+                        leftControl={AluControl}
+                    />
                     <Flags pins={state['FR'].pins} leftControl={FlagsControl} />
                     <InputOutput pins={state['IO'].pins} setPins={changeIOPins} leftControl={IOControl} />
                 </SapOnePile>
@@ -192,7 +190,7 @@ function App() {
                     />
                 </Lightbox>
             </Activity>
-        </>
+        </div>
     )
 }
 

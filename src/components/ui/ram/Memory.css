@@ -30,25 +30,24 @@
     font-family: monospace;
 }
 
-.bit-code>span {
+.bit-code > span {
     font-weight: 400;
     font-size: 0.7rem;
     margin-top: -3px;
-    text-Align: left;
+    text-align: left;
 }
 
-.bit-code>span.address {
+.bit-code > span.address {
     width: 6ch;
 }
 
-.bit-code>span.opt-code {
+.bit-code > span.opt-code {
     width: 3ch;
 }
 
-.bit-code>span.hex {
-    margin-left: 1.0ch;
+.bit-code > span.hex {
+    margin-left: 1ch;
 }
-
 
 .bit-address,
 .bit-data {
@@ -57,6 +56,6 @@
     gap: 1px;
 }
 
-.bit-data> :nth-child(4) {
+.bit-data > :nth-child(4) {
     margin-right: 8px;
 }

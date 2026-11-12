@@ -7,8 +7,9 @@ import SlotGroup from '../ui/slot/SlotGroup'
 import LedNibble from '../ui/led/LedNibble'
 import { useColor } from '../ui/Colors'
 import Led from '../ui/led/Led'
+import PushButton from '../ui/buttons/PushButton'
 
-function Alu({ pins, carryFlag, leftControl, rightControl }) {
+function Alu({ pins, carryFlag, leftControl, rightControl, isSubMode, toggleSubMode }) {
     const color = useColor('alu')
     const colorOn = useColor('alu-on')
     const colorCarry = useColor('alu-carry')
@@ -31,6 +32,16 @@ function Alu({ pins, carryFlag, leftControl, rightControl }) {
                 <div className="slot-header">
                     <h2>{'Carry Flag'}</h2>
                 </div>
+            </SlotRow>
+            <SlotRow>
+                <SlotGroup>
+                    <PushButton
+                        styles={{ buttonLabel: { fontSize: '12px' } }}
+                        name={'Sub'}
+                        on={isSubMode}
+                        onClick={toggleSubMode}
+                    />
+                </SlotGroup>
             </SlotRow>
         </Slot>
     )
