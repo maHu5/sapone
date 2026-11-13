@@ -2,8 +2,8 @@ import React, { StrictMode } from 'react'
 
 import { describe, it, expect, vi } from 'vitest'
 import { renderHook, act } from '@testing-library/react'
-import useRegisterManager from './useRegisterManager'
-import { boolArrayToInt, intToBoolArray } from './helper'
+import useRegisterManager from '../useRegisterManager'
+import { boolArrayToInt, intToBoolArray } from '../helper'
 
 const dummyCntl = () => []
 

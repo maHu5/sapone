@@ -53,6 +53,7 @@ function reducer(state, action) {
 
         return current
     }
+
     if (action.type === 'changeRam') {
         const current = { ...state }
         current['MEMORY'] = { pins: action.ram.map((y) => y.map((x) => x)) }
@@ -76,6 +77,38 @@ function reducer(state, action) {
 
         return current
     }
+
+    if (action.type === 'reset') {
+        const current = { ...state }
+        current['BUS'] = { pins: intToBoolArray(0) }
+        current['PC'] = { pins: intToBoolArray(0) }
+        current['TSC'] = { pins: intToBoolArray(0) }
+        current['MAR'] = { pins: intToBoolArray(0) }
+        current['IR'] = { pins: intToBoolArray(0) }
+        current['REGA'] = { pins: intToBoolArray(0), zeroFlag: true }
+        current['REGB'] = { pins: intToBoolArray(0) }
+        current['ALU'] = { pins: intToBoolArray(0), carryFlag: false }
+        current['IO'] = { pins: intToBoolArray(0) }
+        current['RAM'] = { pins: [...current['MEMORY'].pins[boolArrayToInt(current['MAR'].pins)]] }
+        current['FR'] = { pins: Array(2).fill(false) }
+
+        return current
+    }
+
+    if (action.type === 'subtraction') {
+        const isSubtraction = action.on
+
+        const current = { ...state }
+        const aBits = current['REGA'].pins
+        const bBits = current['REGB'].pins
+        const op = isSubtraction ? 'sub' : 'add'
+
+        const c = alu(aBits, bBits, op)
+        current['ALU'] = { pins: c.result, carryFlag: c.carry }
+
+        return current
+    }
+
     if (action.type === 'process') {
         const current = { ...state }
         const sortedActivePins = action.activePins.sort((a, b) => actionOrder.indexOf(a) - actionOrder.indexOf(b))
@@ -162,10 +195,11 @@ function reducer(state, action) {
 
         return current
     }
+
     throw Error('Unknown action: ' + action.type)
 }
 
-export default function useRegisterManager({ clock, tscEnabled, getActiveControlFlags, rst }) {
+export default function useRegisterManager({ clock, su, tscEnabled, getActiveControlFlags, rst }) {
     const [state, dispatch] = useReducer(reducer, initialState)
     const prevClockRef = useRef(clock)
 
@@ -178,14 +212,16 @@ export default function useRegisterManager({ clock, tscEnabled, getActiveControl
             prevClockRef.current = clock
             return
         }
+
         const clockChanged = prevClock !== clock
         if (!clockChanged) return
 
         if (clock) {
             // Rising Edge → Verarbeitung
+            const flags = getActiveControlFlags()
             dispatch({
                 type: 'process',
-                activePins: getActiveControlFlags()
+                activePins: flags
             })
         } else if (tscEnabled) {
             // Falling Edge → TSC-Inkrement
@@ -193,6 +229,13 @@ export default function useRegisterManager({ clock, tscEnabled, getActiveControl
         }
         prevClockRef.current = clock
     }, [clock, tscEnabled, rst, getActiveControlFlags])
+
+    useEffect(() => {
+        dispatch({
+            type: 'subtraction',
+            on: su
+        })
+    }, [su])
 
     const changeIO = useCallback((pins) => {
         dispatch({ type: 'change', pins })

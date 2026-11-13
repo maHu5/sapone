@@ -3,7 +3,7 @@ import { renderHook, act } from '@testing-library/react'
 import useControls from './useControls'
 
 describe('useControls', () => {
-    it('should return a default value', () => {
+    it('should use htl and io Out', () => {
         const { result } = renderHook(() => useControls())
 
         expect(result.current.cue).toBe(true)
@@ -26,7 +26,10 @@ describe('useControls', () => {
         expect(result.current.controlFlags.hlt).toBe(false)
         expect(result.current.controlFlags.oo).toBe(false)
         expect(result.current.getActiveControlFlags()).toHaveLength(0)
+    })
 
+    it('should set all control flags', () => {
+        const { result } = renderHook(() => useControls())
         act(() => {
             result.current.setControlFlags([
                 'hlt',
@@ -50,5 +53,20 @@ describe('useControls', () => {
         })
 
         expect(result.current.getActiveControlFlags()).toHaveLength(17)
+    })
+
+    it('should set ControlUnit flag', () => {
+        const { result } = renderHook(() => useControls())
+        expect(result.current.cue).toBe(true)
+        act(() => {
+            result.current.setCue(false)
+        })
+
+        expect(result.current.cue).toBe(false)
+
+        act(() => {
+            result.current.setCue(true)
+        })
+        expect(result.current.cue).toBe(true)
     })
 })

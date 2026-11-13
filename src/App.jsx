@@ -34,6 +34,7 @@ function App() {
 
     const { state, changeIO, changeRam } = useRegisterManager({
         clock,
+        su: cntl.controlFlags['su'],
         tscEnabled: !cntl.cue,
         getActiveControlFlags: cntl.getActiveControlFlags,
         rst: cntl.rst
@@ -117,15 +118,19 @@ function App() {
             <PushButton name={'<'} on={cntl.controlFlags['ri']} onClick={() => cntl.toggleCmd('ri')} />
         </div>
     )
+
     let InstructionRegisterControl = (
         <div className="control">
             <PushButton name={'>'} on={cntl.controlFlags['io']} onClick={() => cntl.toggleCmd('io')} />
             <PushButton name={'<'} on={cntl.controlFlags['ii']} onClick={() => cntl.toggleCmd('ii')} />
         </div>
     )
+
     return (
-        <div className="main">
-            <h1>SAP One Computer</h1>
+        <main>
+            <header>
+                <h1>SAP One Computer</h1>
+            </header>
             <SapOneGrid>
                 <SapOnePile>
                     <ProgramCounter
@@ -180,6 +185,7 @@ function App() {
                     <ControlSignals cntl={cntl} />
                 </SapOnePile>
             </SapOneGrid>
+
             <Activity mode={ramEditorOpen ? 'visible' : 'hidden'}>
                 <Lightbox onClose={toggleEditRam}>
                     <RamMonitor
@@ -190,7 +196,7 @@ function App() {
                     />
                 </Lightbox>
             </Activity>
-        </div>
+        </main>
     )
 }
 

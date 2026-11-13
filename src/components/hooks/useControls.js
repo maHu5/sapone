@@ -22,8 +22,8 @@ export const CONTROL_NAMES = [
 ]
 
 export default function useControls() {
-    const [cue, setCue] = useState(true)
-    const [rst, setRst] = useState(false)
+    const [cue, setCue] = useState(true) // Enable/Disable ControlUnit
+    const [rst, setRst] = useState(false) // Reset Pin
 
     // Initialisiere alle Kontrollflags in einem Objekt
     const [controlFlags, setControlFlagsState] = useState(
