@@ -51,7 +51,9 @@ Alu.propTypes = {
     pins: PropTypes.arrayOf(PropTypes.bool).isRequired,
     leftControl: PropTypes.node,
     rightControl: PropTypes.node,
-    carryFlag: PropTypes.bool
+    carryFlag: PropTypes.bool,
+    isSubMode: PropTypes.bool,
+    toggleSubMode: PropTypes.func
 }
 
 export default Alu

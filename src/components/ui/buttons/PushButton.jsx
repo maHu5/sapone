@@ -10,7 +10,6 @@ function PushButton({ name, on, styles, onClick, onMouseDown, onMouseUp, color =
     const handlePointerDown = onClick
         ? null
         : (event) => {
-              console.log('handlePointerDown')
               buttonRef.current.setPointerCapture(event.pointerId)
               onMouseDown?.(event)
           }
@@ -18,14 +17,12 @@ function PushButton({ name, on, styles, onClick, onMouseDown, onMouseUp, color =
     const handlePointerUp = onClick
         ? null
         : (event) => {
-              console.log('handlePointerUp')
               onMouseUp?.(event)
           }
 
     const handlePointerCancel = onClick
         ? null
         : (event) => {
-              console.log('handlePointerCancel')
               onMouseUp?.(event)
           }
 
